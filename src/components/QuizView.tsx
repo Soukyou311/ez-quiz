@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, XCircle, Trophy, ChevronRight, Lightbulb } from 'lucide-react';
 import type { Quiz } from '../data/quizData';
+import { ThemeToggle } from './ThemeToggle';
 
 interface QuizViewProps {
   quiz: Quiz;
@@ -63,10 +64,10 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
     const isGood = percentage >= 70;
 
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0f] flex items-center justify-center p-6 transition-colors">
         {/* Background */}
         <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-orange-500/10 rounded-full blur-[150px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-orange-500/10 dark:bg-orange-500/10 rounded-full blur-[150px]" />
         </div>
 
         <motion.div
@@ -74,27 +75,27 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
           animate={{ opacity: 1, scale: 1 }}
           className="relative z-10 w-full max-w-md"
         >
-          <div className="bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border border-zinc-800/80 rounded-3xl p-8 text-center backdrop-blur-sm">
+          <div className="bg-white dark:bg-gradient-to-br dark:from-zinc-900/90 dark:to-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80 rounded-3xl p-8 text-center backdrop-blur-sm shadow-lg dark:shadow-none">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
-              className={`w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center ${isGood ? 'bg-emerald-500/20' : 'bg-orange-500/20'}`}
+              className={`w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center ${isGood ? 'bg-emerald-100 dark:bg-emerald-500/20' : 'bg-orange-100 dark:bg-orange-500/20'}`}
             >
-              <Trophy className={`w-10 h-10 ${isGood ? 'text-emerald-400' : 'text-orange-400'}`} />
+              <Trophy className={`w-10 h-10 ${isGood ? 'text-emerald-500 dark:text-emerald-400' : 'text-orange-500 dark:text-orange-400'}`} />
             </motion.div>
 
-            <h2 className="text-2xl font-bold text-white mb-2 font-['Crimson_Pro',serif]">答题完成！</h2>
-            <p className="text-zinc-400 mb-6 font-['DM_Sans',sans-serif]">{quiz.title}</p>
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2 font-['Crimson_Pro',serif]">答题完成！</h2>
+            <p className="text-zinc-500 dark:text-zinc-400 mb-6 font-['DM_Sans',sans-serif]">{quiz.title}</p>
 
-            <div className="bg-zinc-800/50 rounded-2xl p-6 mb-6">
-              <div className="text-5xl font-bold text-white mb-2 font-['Crimson_Pro',serif]">
+            <div className="bg-zinc-50 dark:bg-zinc-800/50 rounded-2xl p-6 mb-6">
+              <div className="text-5xl font-bold text-zinc-900 dark:text-white mb-2 font-['Crimson_Pro',serif]">
                 {correctCount}/{quiz.questions.length}
               </div>
-              <div className="text-lg text-zinc-400 font-['DM_Sans',sans-serif]">
+              <div className="text-lg text-zinc-500 dark:text-zinc-400 font-['DM_Sans',sans-serif]">
                 正确率 {percentage}%
               </div>
-              <div className="mt-4 h-2 bg-zinc-700/50 rounded-full overflow-hidden">
+              <div className="mt-4 h-2 bg-zinc-200 dark:bg-zinc-700/50 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
@@ -109,7 +110,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onBack}
-                className="flex-1 px-6 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-medium transition-colors font-['DM_Sans',sans-serif]"
+                className="flex-1 px-6 py-3 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-white font-medium transition-colors font-['DM_Sans',sans-serif]"
               >
                 返回列表
               </motion.button>
@@ -129,41 +130,43 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] relative">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0f] relative transition-colors">
       {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-orange-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-orange-500/5 dark:bg-orange-500/5 bg-orange-500/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="sticky top-0 bg-[#0a0a0f]/80 backdrop-blur-lg border-b border-zinc-800/50 z-20">
+        <header className="sticky top-0 bg-white/80 dark:bg-[#0a0a0f]/80 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800/50 z-20">
           <div className="max-w-3xl mx-auto px-4 py-4">
             <div className="flex items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onBack}
-                className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
+                className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </motion.button>
 
               <div className="flex-1 min-w-0">
-                <h1 className="text-lg font-semibold text-white truncate font-['Crimson_Pro',serif]">{quiz.title}</h1>
-                <p className="text-xs text-zinc-500">
+                <h1 className="text-lg font-semibold text-zinc-900 dark:text-white truncate font-['Crimson_Pro',serif]">{quiz.title}</h1>
+                <p className="text-xs text-zinc-400 dark:text-zinc-500">
                   第 {currentIndex + 1} / {quiz.questions.length} 题
                 </p>
               </div>
 
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800/50 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span className="text-white font-medium">{correctCount}</span>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <span className="text-zinc-700 dark:text-white font-medium">{correctCount}</span>
               </div>
+
+              <ThemeToggle />
             </div>
 
             {/* Progress bar */}
-            <div className="mt-3 h-1 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="mt-3 h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
@@ -186,11 +189,11 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
               {/* Question */}
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 rounded-lg bg-orange-500/10 text-orange-400 text-sm font-medium">
+                  <span className="px-3 py-1 rounded-lg bg-orange-100 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-sm font-medium">
                     Q{currentIndex + 1}
                   </span>
                 </div>
-                <h2 className="text-xl md:text-2xl text-white leading-relaxed font-['DM_Sans',sans-serif]">
+                <h2 className="text-xl md:text-2xl text-zinc-900 dark:text-white leading-relaxed font-['DM_Sans',sans-serif]">
                   {currentQuestion.question}
                 </h2>
               </div>
@@ -202,20 +205,20 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                   const isCorrect = index === currentQuestion.correctIndex;
                   const showResult = answerState !== 'unanswered';
 
-                  let bgClass = 'bg-zinc-900/50 hover:bg-zinc-800/50';
-                  let borderClass = 'border-zinc-700/50 hover:border-zinc-600';
+                  let bgClass = 'bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-800/50';
+                  let borderClass = 'border-zinc-200 dark:border-zinc-700/50 hover:border-zinc-300 dark:hover:border-zinc-600';
 
                   if (showResult) {
                     if (isCorrect) {
-                      bgClass = 'bg-emerald-500/10';
-                      borderClass = 'border-emerald-500/50';
+                      bgClass = 'bg-emerald-50 dark:bg-emerald-500/10';
+                      borderClass = 'border-emerald-300 dark:border-emerald-500/50';
                     } else if (isSelected && !isCorrect) {
-                      bgClass = 'bg-rose-500/10';
-                      borderClass = 'border-rose-500/50';
+                      bgClass = 'bg-rose-50 dark:bg-rose-500/10';
+                      borderClass = 'border-rose-300 dark:border-rose-500/50';
                     }
                   } else if (isSelected) {
-                    bgClass = 'bg-orange-500/10';
-                    borderClass = 'border-orange-500/50';
+                    bgClass = 'bg-orange-50 dark:bg-orange-500/10';
+                    borderClass = 'border-orange-300 dark:border-orange-500/50';
                   }
 
                   return (
@@ -235,7 +238,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                             ? 'bg-rose-500 text-white'
                             : isSelected
                             ? 'bg-orange-500 text-black'
-                            : 'bg-zinc-800 text-zinc-400'
+                            : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400'
                         }`}>
                           {showResult && isCorrect ? (
                             <CheckCircle2 className="w-5 h-5" />
@@ -245,7 +248,13 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                             String.fromCharCode(65 + index)
                           )}
                         </div>
-                        <span className={`text-base ${showResult && isCorrect ? 'text-emerald-100' : showResult && isSelected && !isCorrect ? 'text-rose-100' : 'text-zinc-200'} font-['DM_Sans',sans-serif]`}>
+                        <span className={`text-base ${
+                          showResult && isCorrect
+                            ? 'text-emerald-700 dark:text-emerald-100'
+                            : showResult && isSelected && !isCorrect
+                            ? 'text-rose-700 dark:text-rose-100'
+                            : 'text-zinc-700 dark:text-zinc-200'
+                        } font-['DM_Sans',sans-serif]`}>
                           {option}
                         </span>
                       </div>
@@ -263,12 +272,12 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                     exit={{ opacity: 0, height: 0 }}
                     className="mb-8 overflow-hidden"
                   >
-                    <div className="p-4 rounded-xl bg-zinc-800/30 border border-zinc-700/30">
+                    <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/30">
                       <div className="flex items-center gap-2 mb-2">
-                        <Lightbulb className="w-4 h-4 text-orange-400" />
-                        <span className="text-sm font-medium text-orange-400">解析</span>
+                        <Lightbulb className="w-4 h-4 text-orange-500 dark:text-orange-400" />
+                        <span className="text-sm font-medium text-orange-600 dark:text-orange-400">解析</span>
                       </div>
-                      <p className="text-sm text-zinc-300 font-['DM_Sans',sans-serif]">{currentQuestion.explanation}</p>
+                      <p className="text-sm text-zinc-600 dark:text-zinc-300 font-['DM_Sans',sans-serif]">{currentQuestion.explanation}</p>
                     </div>
                   </motion.div>
                 )}
@@ -285,7 +294,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                     className={`px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-colors font-['DM_Sans',sans-serif] ${
                       selectedOption !== null
                         ? 'bg-orange-500 hover:bg-orange-400 text-black'
-                        : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-500 cursor-not-allowed'
                     }`}
                   >
                     <span>确认答案</span>

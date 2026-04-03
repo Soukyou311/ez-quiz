@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Clock, ChevronRight } from 'lucide-react';
 import type { Quiz, QuizCategory } from '../data/quizData';
+import { ThemeToggle } from './ThemeToggle';
 
 interface QuizListProps {
   category: QuizCategory;
@@ -9,44 +10,46 @@ interface QuizListProps {
 }
 
 const difficultyColors = {
-  '简单': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-  '中等': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
-  '困难': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+  '简单': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/30',
+  '中等': 'bg-amber-100 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/30',
+  '困难': 'bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/30',
 };
 
 export function QuizList({ category, onSelectQuiz, onBack }: QuizListProps) {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0f] relative overflow-hidden transition-colors">
       {/* Background atmosphere */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-orange-500/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-violet-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-orange-500/5 dark:bg-orange-500/5 bg-orange-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-violet-500/5 dark:bg-violet-500/5 bg-violet-500/10 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="sticky top-0 bg-[#0a0a0f]/80 backdrop-blur-lg border-b border-zinc-800/50 z-20">
+        <header className="sticky top-0 bg-white/80 dark:bg-[#0a0a0f]/80 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800/50 z-20">
           <div className="max-w-4xl mx-auto px-4 py-4">
             <div className="flex items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onBack}
-                className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
+                className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </motion.button>
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`px-2 py-0.5 rounded text-xs font-medium bg-orange-500/20 text-orange-400`}>
+                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">
                     {category.icon}
                   </span>
                 </div>
-                <h1 className="text-xl font-bold text-white truncate font-['Crimson_Pro',serif]">
+                <h1 className="text-xl font-bold text-zinc-900 dark:text-white truncate font-['Crimson_Pro',serif]">
                   {category.title}
                 </h1>
               </div>
+
+              <ThemeToggle />
             </div>
           </div>
         </header>
@@ -54,7 +57,7 @@ export function QuizList({ category, onSelectQuiz, onBack }: QuizListProps) {
         {/* Quiz List */}
         <main className="px-6 py-8">
           <div className="max-w-4xl mx-auto">
-            <p className="text-zinc-400 mb-6 font-['DM_Sans',sans-serif]">
+            <p className="text-zinc-500 dark:text-zinc-400 mb-6 font-['DM_Sans',sans-serif]">
               {category.description}
             </p>
 
@@ -69,30 +72,30 @@ export function QuizList({ category, onSelectQuiz, onBack }: QuizListProps) {
                   onClick={() => onSelectQuiz(quiz)}
                   className="group cursor-pointer"
                 >
-                  <div className="bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 hover:border-orange-500/30 transition-all duration-300 backdrop-blur-sm">
+                  <div className="bg-white dark:bg-gradient-to-br dark:from-zinc-900/90 dark:to-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80 rounded-xl p-5 hover:border-orange-500/30 transition-all duration-300 shadow-sm dark:shadow-none backdrop-blur-sm">
                     <div className="flex items-center gap-4">
                       {/* Icon */}
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 flex items-center justify-center border border-orange-500/20 shrink-0">
-                        <span className="text-orange-400 font-bold text-sm font-['Crimson_Pro',serif]">{quiz.icon}</span>
+                        <span className="text-orange-500 dark:text-orange-400 font-bold text-sm font-['Crimson_Pro',serif]">{quiz.icon}</span>
                       </div>
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-lg font-semibold text-white group-hover:text-orange-100 transition-colors font-['Crimson_Pro',serif]">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-100 transition-colors font-['Crimson_Pro',serif]">
                             {quiz.title}
                           </h3>
                           <span className={`px-2 py-0.5 rounded-lg text-xs font-medium border ${difficultyColors[quiz.difficulty]}`}>
                             {quiz.difficulty}
                           </span>
                         </div>
-                        <p className="text-sm text-zinc-400 line-clamp-1 font-['DM_Sans',sans-serif]">
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1 font-['DM_Sans',sans-serif]">
                           {quiz.description}
                         </p>
                       </div>
 
                       {/* Stats */}
-                      <div className="hidden sm:flex items-center gap-6 text-sm text-zinc-500 shrink-0">
+                      <div className="hidden sm:flex items-center gap-6 text-sm text-zinc-500 dark:text-zinc-500 shrink-0">
                         <div className="flex items-center gap-1.5">
                           <BookOpen className="w-4 h-4" />
                           <span>{quiz.questionCount} 题</span>
@@ -104,16 +107,16 @@ export function QuizList({ category, onSelectQuiz, onBack }: QuizListProps) {
                       </div>
 
                       {/* Arrow */}
-                      <ChevronRight className="w-5 h-5 text-zinc-600 group-hover:text-orange-400 transition-colors shrink-0" />
+                      <ChevronRight className="w-5 h-5 text-zinc-300 dark:text-zinc-600 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors shrink-0" />
                     </div>
 
                     {/* Progress bar (placeholder) */}
-                    <div className="mt-4 pt-4 border-t border-zinc-800/50">
+                    <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/50">
                       <div className="flex items-center justify-between text-sm mb-2">
-                        <span className="text-zinc-500">学习进度</span>
-                        <span className="text-zinc-400">0/{quiz.questionCount}</span>
+                        <span className="text-zinc-400 dark:text-zinc-500">学习进度</span>
+                        <span className="text-zinc-500 dark:text-zinc-400">0/{quiz.questionCount}</span>
                       </div>
-                      <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                         <div className="h-full w-0 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full" />
                       </div>
                     </div>
