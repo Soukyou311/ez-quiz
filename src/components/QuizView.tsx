@@ -66,7 +66,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-6">
         {/* Background */}
         <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-amber-500/10 rounded-full blur-[150px]" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-orange-500/10 rounded-full blur-[150px]" />
         </div>
 
         <motion.div
@@ -79,9 +79,9 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
-              className={`w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center ${isGood ? 'bg-emerald-500/20' : 'bg-amber-500/20'}`}
+              className={`w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center ${isGood ? 'bg-emerald-500/20' : 'bg-orange-500/20'}`}
             >
-              <Trophy className={`w-10 h-10 ${isGood ? 'text-emerald-400' : 'text-amber-400'}`} />
+              <Trophy className={`w-10 h-10 ${isGood ? 'text-emerald-400' : 'text-orange-400'}`} />
             </motion.div>
 
             <h2 className="text-2xl font-bold text-white mb-2 font-['Crimson_Pro',serif]">答题完成！</h2>
@@ -99,7 +99,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className={`h-full rounded-full ${isGood ? 'bg-emerald-500' : 'bg-amber-500'}`}
+                  className={`h-full rounded-full ${isGood ? 'bg-emerald-500' : 'bg-orange-500'}`}
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleRestart}
-                className="flex-1 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-medium transition-colors font-['DM_Sans',sans-serif]"
+                className="flex-1 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-medium transition-colors font-['DM_Sans',sans-serif]"
               >
                 再做一次
               </motion.button>
@@ -132,7 +132,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
     <div className="min-h-screen bg-[#0a0a0f] relative">
       {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-amber-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-orange-500/5 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10">
@@ -167,7 +167,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
-                className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full"
+                className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
               />
             </div>
           </div>
@@ -186,7 +186,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
               {/* Question */}
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 rounded-lg bg-amber-500/10 text-amber-400 text-sm font-medium">
+                  <span className="px-3 py-1 rounded-lg bg-orange-500/10 text-orange-400 text-sm font-medium">
                     Q{currentIndex + 1}
                   </span>
                 </div>
@@ -214,8 +214,8 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                       borderClass = 'border-rose-500/50';
                     }
                   } else if (isSelected) {
-                    bgClass = 'bg-amber-500/10';
-                    borderClass = 'border-amber-500/50';
+                    bgClass = 'bg-orange-500/10';
+                    borderClass = 'border-orange-500/50';
                   }
 
                   return (
@@ -234,7 +234,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                             : showResult && isSelected && !isCorrect
                             ? 'bg-rose-500 text-white'
                             : isSelected
-                            ? 'bg-amber-500 text-black'
+                            ? 'bg-orange-500 text-black'
                             : 'bg-zinc-800 text-zinc-400'
                         }`}>
                           {showResult && isCorrect ? (
@@ -265,8 +265,8 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                   >
                     <div className="p-4 rounded-xl bg-zinc-800/30 border border-zinc-700/30">
                       <div className="flex items-center gap-2 mb-2">
-                        <Lightbulb className="w-4 h-4 text-amber-400" />
-                        <span className="text-sm font-medium text-amber-400">解析</span>
+                        <Lightbulb className="w-4 h-4 text-orange-400" />
+                        <span className="text-sm font-medium text-orange-400">解析</span>
                       </div>
                       <p className="text-sm text-zinc-300 font-['DM_Sans',sans-serif]">{currentQuestion.explanation}</p>
                     </div>
@@ -284,7 +284,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                     disabled={selectedOption === null}
                     className={`px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-colors font-['DM_Sans',sans-serif] ${
                       selectedOption !== null
-                        ? 'bg-amber-500 hover:bg-amber-400 text-black'
+                        ? 'bg-orange-500 hover:bg-orange-400 text-black'
                         : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
                     }`}
                   >
@@ -296,7 +296,7 @@ export function QuizView({ quiz, onBack }: QuizViewProps) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={handleNext}
-                    className="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-medium flex items-center gap-2 transition-colors font-['DM_Sans',sans-serif]"
+                    className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-medium flex items-center gap-2 transition-colors font-['DM_Sans',sans-serif]"
                   >
                     <span>{currentIndex < quiz.questions.length - 1 ? '下一题' : '查看结果'}</span>
                     <ChevronRight className="w-4 h-4" />
