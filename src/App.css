@@ -10,60 +10,9 @@ html {
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: #ffffff;
-  color: #18181b;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.dark body,
-body.dark {
-  background: #0a0a0f;
-  color: #ffffff;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #18181b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
-  border-radius: 4px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
-}
-
-/* Selection */
-::selection {
-  background: rgba(249, 115, 22, 0.3);
-  color: #18181b;
-}
-
-.dark ::selection {
-  background: rgba(249, 115, 22, 0.3);
-  color: #ffffff;
 }
 
 /* Line clamp utility */
